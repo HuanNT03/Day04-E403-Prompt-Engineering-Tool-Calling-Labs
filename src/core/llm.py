@@ -40,6 +40,14 @@ def build_chat_model(
             temperature=temperature,
             google_api_key=os.getenv("GOOGLE_API_KEY"),
         )
+    if provider == "fireworks":
+        from langchain_fireworks import ChatFireworks
+
+        return ChatFireworks(
+            model=model_name or os.getenv("FIREWORKS_MODEL", "accounts/fireworks/models/deepseek-v4-pro"),
+            temperature=temperature,
+            fireworks_api_key=os.getenv("FIREWORKS_API_KEY"),
+        )
     if provider == "ollama":
         from langchain_ollama import ChatOllama
 
@@ -48,7 +56,15 @@ def build_chat_model(
             base_url=os.getenv("OLLAMA_BASE_URL", "http://localhost:11434"),
             temperature=temperature,
         )
-    raise ValueError("This lab supports only the `google` and `ollama` providers.")
+    if provider == "openai":
+        from langchain_openai import ChatOpenAI
+
+        return ChatOpenAI(
+            model=model_name or os.getenv("OPENAI_MODEL", "gpt-3.5-turbo-instruct"),
+            temperature=temperature,
+            openai_api_key=os.getenv("OPENAI_API_KEY"),
+        )
+    raise ValueError("This lab supports only the `google`, `fireworks`, `ollama` and `openai` providers.")
 
 
 def extract_json_object(raw: Any) -> dict[str, Any]:

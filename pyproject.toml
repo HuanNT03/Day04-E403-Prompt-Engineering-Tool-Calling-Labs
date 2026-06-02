@@ -12,9 +12,14 @@ dependencies = [
   "langchain-ollama>=0.3.0",
   "pydantic>=2.8.0",
   "python-dotenv>=1.0.1",
+  "langchain-fireworks>=1.4.0",
+  "langchain-openai>=1.1.0",
 ]
 
 [project.optional-dependencies]
 dev = [
   "pytest>=9.0.0",
 ]
+
+[tool.pyright]
+extraPaths = ["."]

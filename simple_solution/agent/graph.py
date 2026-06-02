@@ -110,8 +110,10 @@ def build_agent(
     data_dir: Path | None = None,
     output_dir: Path | None = None,
     *,
-    provider: str = "google",
-    model_name: str | None = None,
+    # provider: str = "fireworks",
+    provider: str = "openai",
+    # model_name: str | None = "accounts/fireworks/models/deepseek-v4-pro",
+    model_name: str | None = "gpt-3.5-turbo-instruct",
     today: str | None = None,
 ):
     store = OrderDataStore(data_dir or DEFAULT_DATA_DIR, output_dir or DEFAULT_OUTPUT_DIR, today=today)
@@ -126,8 +128,10 @@ def build_agent(
 def run_agent(
     query: str,
     *,
-    provider: str = "google",
-    model_name: str | None = None,
+    # provider: str = "fireworks",
+    provider: str = "openai",
+    # model_name: str | None = "accounts/fireworks/models/deepseek-v4-pro",
+    model_name: str | None = "gpt-3.5-turbo-instruct",
     data_dir: Path | None = None,
     output_dir: Path | None = None,
     today: str | None = None,
