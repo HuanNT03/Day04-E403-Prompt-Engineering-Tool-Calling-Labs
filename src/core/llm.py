@@ -46,7 +46,6 @@ def build_chat_model(
         return ChatFireworks(
             model=model_name or os.getenv("FIREWORKS_MODEL", "accounts/fireworks/models/deepseek-v4-pro"),
             temperature=temperature,
-            fireworks_api_key=os.getenv("FIREWORKS_API_KEY"),
         )
     if provider == "ollama":
         from langchain_ollama import ChatOllama
@@ -62,7 +61,6 @@ def build_chat_model(
         return ChatOpenAI(
             model=model_name or os.getenv("OPENAI_MODEL", "gpt-3.5-turbo-instruct"),
             temperature=temperature,
-            openai_api_key=os.getenv("OPENAI_API_KEY"),
         )
     raise ValueError("This lab supports only the `google`, `fireworks`, `ollama` and `openai` providers.")
 
